@@ -12,7 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+
+    // if (Auth::check()) {
+    //   return "the user is logged in";
+    // }
+
+    $email = "russ@gmail.com";
+    $password = "password";
+
+    if (Auth::attempt(['email'=>$email, 'password'=>$password])) {
+      return redirect()->intended('/admin');
+    }
 });
 
 Auth::routes();
